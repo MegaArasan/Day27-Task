@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React,{createContext} from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -8,7 +8,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Menu } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
-import { useState } from "react";
+import { useState} from "react";
 import Fade from "@mui/material/Fade";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
@@ -17,8 +17,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 
 export default function App() {
+  // const styles = (theme) => ({
+  //   root: {
+  //     [theme.breakpoints.down("md")]: {
+  //       display:"block",
+  //     },
+  //   },
+  // });
   const [page, setpage] = useState(null);
-  const [add, setadd] = useState(5);
+  //  const context=createContext()
+  const [add, setadd] = useState(0);
   const open = Boolean(page);
   const handleClick = (event) => {
     setpage(event.currentTarget);
@@ -27,20 +35,22 @@ export default function App() {
     setpage(null);
   };
   return (
-    <div className="App">
+    // <context.Provider value={{add,setadd}}>
+    <div className="App" >
       <AppBar position="static" color="default">
         <Toolbar variant="dense">
-          <Typography variant="h6" component="div">
+          <Typography variant="h6" component="div"  style={{ marginLeft: "8rem" }}>
             Start Bootstrap
           </Typography>
-          <Button variant="text" color="inherit">
+          <Button variant="text" color="inherit"  style={{ marginLeft: "15px" }}>
             Home
           </Button>
-          <Button variant="text" color="inherit">
+          <Button variant="text" color="inherit"  style={{ marginLeft: "15px" }}>
             About
           </Button>
           <Button
             id="fade-button"
+            color="inherit"
             aria-controls="fade-menu"
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
@@ -68,10 +78,9 @@ export default function App() {
           <Button
             variant="outlined"
             startIcon={<ShoppingCartIcon />}
-            style={{ marginLeft: "auto" }}
+            style={{ marginLeft: "auto",marginRight:"8rem" }}
             color="inherit"
-          >
-            cart
+          >Cart    ""
             <Badge
               sx={{
                 "& .MuiBadge-badge": {
@@ -79,11 +88,11 @@ export default function App() {
                   backgroundColor: "black",
                 },
               }}
+              anchorOrigin={{ vertical: 'top', horizontal: 'right', }}
               badgeContent={add}
-              style={{ padding: "2px" }}
             ></Badge>
           </Button>
-          <IconButton color="primary" aria-label="menuicon">
+          <IconButton color="primary" aria-label="menuicon" sx={{display:"none"}} >
             <MenuIcon />
           </IconButton>
         </Toolbar>
@@ -103,5 +112,6 @@ export default function App() {
         </Typography>
       </footer>
     </div>
+    // </context.Provider>
   );
 }
