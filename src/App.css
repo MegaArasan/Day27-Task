@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+}
+.bodyheader {
+  background-color: rgb(33, 37, 41);
+  opacity: 1;
+  color: white;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+.body-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.MuiCard-root {
+  margin: 2rem;
+}
+.bodyfooter {
+  background-color: rgb(33, 37, 41);
+  opacity: 1;
+  color: white;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.MuiCardActions-root {
+  display: flex;
+  justify-content: center;
+}
