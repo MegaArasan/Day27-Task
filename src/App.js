@@ -1,4 +1,5 @@
 import "./App.css";
+// eslint-disable-next-line no-unused-vars
 import React, { createContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -21,6 +22,7 @@ export default function App() {
   const [show, setshow] = useState("show");
   const [show1, setshow1] = useState("show1");
   //  const context=createContext();
+  // eslint-disable-next-line no-unused-vars
   const [add, setadd] = useState(2);
   const open = Boolean(page);
   const handleClick = (event) => {

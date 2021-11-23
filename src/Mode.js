@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
