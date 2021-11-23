@@ -7,12 +7,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Badge from "@mui/material/Badge";
 import Rating from "@mui/material/Rating";
-import context from "./App.js";
+// import context from "./App.js";
 
 export function Mode({ img, badge, title, rating, price, action }) {
   // const {add,setadd} = useContext(context);
   return (
-    <Card sx={{ maxWidth: 245 }}>
+    // card content of the data
+    <Card sx={{ width: 240 }}>
       {badge === "sale" ? (
         <Badge
           sx={{

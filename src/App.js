@@ -1,5 +1,5 @@
 import "./App.css";
-import React,{createContext} from "react";
+import React, { createContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -8,25 +8,20 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Menu } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
-import { useState} from "react";
+import { useState } from "react";
 import Fade from "@mui/material/Fade";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge from "@mui/material/Badge";
 import { Bodycontent } from "./Bodycontent";
 import MenuIcon from "@mui/icons-material/Menu";
-import IconButton from "@mui/material/IconButton";
 
 export default function App() {
-  // const styles = (theme) => ({
-  //   root: {
-  //     [theme.breakpoints.down("md")]: {
-  //       display:"block",
-  //     },
-  //   },
-  // });
+  // for making shop dropdown
   const [page, setpage] = useState(null);
-  //  const context=createContext()
-  const [add, setadd] = useState(0);
+  const [show, setshow] = useState("show");
+  const [show1, setshow1] = useState("show1");
+  //  const context=createContext();
+  const [add, setadd] = useState(2);
   const open = Boolean(page);
   const handleClick = (event) => {
     setpage(event.currentTarget);
@@ -35,52 +30,138 @@ export default function App() {
     setpage(null);
   };
   return (
-    // <context.Provider value={{add,setadd}}>
-    <div className="App" >
+    // <context.Provider>
+    <div className="App">
+      {/* navbar for thee website */}
       <AppBar position="static" color="default">
-        <Toolbar variant="dense">
-          <Typography variant="h6" component="div"  style={{ marginLeft: "8rem" }}>
+        <Toolbar variant="regular">
+          <Typography
+            variant="h6"
+            component="div"
+            style={{ marginLeft: "20px" }}
+          >
             Start Bootstrap
           </Typography>
-          <Button variant="text" color="inherit"  style={{ marginLeft: "15px" }}>
+          <div className="nav">
+            <Button
+              variant="text"
+              color="inherit"
+              style={{ marginLeft: "15px" }}
+            >
+              Home
+            </Button>
+            <Button
+              variant="text"
+              color="inherit"
+              style={{ marginLeft: "15px" }}
+            >
+              About
+            </Button>
+            <Button
+              id="fade-button"
+              color="inherit"
+              aria-controls="fade-menu"
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              variant="text"
+              onClick={handleClick}
+              endIcon={<KeyboardArrowDownIcon />}
+            >
+              shop
+            </Button>
+            {/* shop dropdown button */}
+            <Menu
+              id="fade-menu"
+              MenuListProps={{
+                "aria-labelledby": "fade-button",
+              }}
+              anchorEl={page}
+              open={open}
+              onClose={handleClose}
+              TransitionComponent={Fade}
+            >
+              <MenuItem onClick={handleClose}>All Products</MenuItem>
+              <Divider sx={{ my: 0.5 }} />
+              <MenuItem onClick={handleClose}>Popular Items</MenuItem>
+              <MenuItem onClick={handleClose}>New Arrivals</MenuItem>
+            </Menu>
+
+            <Button
+              variant="outlined"
+              startIcon={<ShoppingCartIcon />}
+              sx={{ marginLeft: "auto" }}
+              color="inherit"
+            >
+              Cart ""
+              <Badge
+                sx={{
+                  "& .MuiBadge-badge": {
+                    color: "white",
+                    backgroundColor: "black",
+                  },
+                }}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                badgeContent={add}
+              ></Badge>
+            </Button>
+          </div>
+          <div className="menu-btn">
+            <Button
+              onClick={() => setshow(!show)}
+              color="primary"
+              aria-label="menuicon"
+            >
+              <MenuIcon />
+            </Button>
+          </div>
+        </Toolbar>
+      </AppBar>
+      {/* making responsive */}
+      {show ? (
+        ""
+      ) : (
+        <div className="dropnav">
+          <Button variant="text" color="inherit">
             Home
           </Button>
-          <Button variant="text" color="inherit"  style={{ marginLeft: "15px" }}>
+          <Button variant="text" color="inherit">
             About
           </Button>
           <Button
             id="fade-button"
             color="inherit"
             aria-controls="fade-menu"
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
             variant="text"
-            onClick={handleClick}
+            onClick={() => setshow1(!show1)}
             endIcon={<KeyboardArrowDownIcon />}
           >
             shop
           </Button>
-          <Menu
-            id="fade-menu"
-            MenuListProps={{
-              "aria-labelledby": "fade-button",
-            }}
-            anchorEl={page}
-            open={open}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-          >
-            <MenuItem onClick={handleClose}>All Products</MenuItem>
-            <Divider sx={{ my: 0.5 }} />
-            <MenuItem onClick={handleClose}>Popular Items</MenuItem>
-            <MenuItem onClick={handleClose}>New Arrivals</MenuItem>
-          </Menu>
+          {/* for making shop dropdown button in responsive appbar */}
+          {show1 ? (
+            ""
+          ) : (
+            <div>
+              <Button color="inherit" onClick={handleClose} variant="text">
+                All Products
+              </Button>
+              <Divider sx={{ my: 0.5 }} />
+              <Button color="inherit" onClick={handleClose} variant="text">
+                Popular Items
+              </Button>
+              <Divider sx={{ my: 0.5 }} />
+              <Button color="inherit" onClick={handleClose} variant="text">
+                New Arrivals
+              </Button>
+            </div>
+          )}
+
           <Button
             variant="outlined"
             startIcon={<ShoppingCartIcon />}
-            style={{ marginLeft: "auto",marginRight:"8rem" }}
             color="inherit"
-          >Cart    ""
+          >
+            Cart""
             <Badge
               sx={{
                 "& .MuiBadge-badge": {
@@ -88,15 +169,12 @@ export default function App() {
                   backgroundColor: "black",
                 },
               }}
-              anchorOrigin={{ vertical: 'top', horizontal: 'right', }}
+              anchorOrigin={{ vertical: "top", horizontal: "right" }}
               badgeContent={add}
             ></Badge>
           </Button>
-          <IconButton color="primary" aria-label="menuicon" sx={{display:"none"}} >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+        </div>
+      )}
       <header className="bodyheader">
         <Typography variant="h2" component="h2">
           Shop in Style
@@ -105,6 +183,7 @@ export default function App() {
           With this shop hompeage template
         </Typography>
       </header>
+      {/* to show the content in the body */}
       <Bodycontent />
       <footer className="bodyfooter">
         <Typography variant="p" component="p">
@@ -112,6 +191,6 @@ export default function App() {
         </Typography>
       </footer>
     </div>
-    // </context.Provider>
+    //  </context.Provider>
   );
 }

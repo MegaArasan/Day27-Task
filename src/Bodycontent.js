@@ -2,6 +2,7 @@ import React from "react";
 import { Mode } from "./Mode";
 
 export function Bodycontent() {
+  // data for the body content
   const product = [
     {
       img: "https://dummyimage.com/450x300/dee2e6/6c757d.jpg",
@@ -71,6 +72,7 @@ export function Bodycontent() {
 
   return (
     <div className="body-content">
+      {/* mapping the values to the component */}
       {product.map(({ img, badge, title, rating, price, action }, index) => (
         <Mode
           key={index}
