@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -8,10 +7,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Badge from "@mui/material/Badge";
 import Rating from "@mui/material/Rating";
-// import context from "./App.js";
+import { context } from "./App.js";
 
 export function Mode({ img, badge, title, rating, price, action }) {
-  // const {add,setadd} = useContext(context);
+  const {add } = useContext(context);
   return (
     // card content of the data
     <Card sx={{ width: 240 }}>
@@ -48,7 +47,7 @@ export function Mode({ img, badge, title, rating, price, action }) {
           size="small"
           variant="outlined"
           color="inherit"
-          // onClick={() =>setadd(add + 1)}
+          onClick={() => (add + 1)}
         >
           {action}
         </Button>
